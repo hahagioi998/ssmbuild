@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lishan.dao.BookMapper">
+    <insert id="addBook" parameterType="books">
+        insert into lishan.books(bookID, bookName, bookCounts, detail) VALUES
+        (#{bookID},#{bookName},#{bookCounts},#{detail});
+    </insert>
+
+    <delete id="deleteByID" parameterType="int">
+        delete from lishan.books where bookID = #{bookID}
+    </delete>
+
+    <update id="updateBooks" parameterType="books">
+        update lishan.books set bookName = #{bookName},bookCounts = #{bookCounts}, detail = #{detail}
+        where bookID = #{bookID}
+    </update>
+    <select id="queryBooksById" resultType="com.lishan.pojo.Books">
+        select * from lishan.books where bookID = #{bookID}
+    </select>
+    <select id="queryAllBooks" resultType="com.lishan.pojo.Books">
+        select * from lishan.books
+    </select>
+    <select id="queryBooksByName" resultType="com.lishan.pojo.Books">
+        select * from lishan.books where bookName like #{bookName}
+    </select>
+
+</mapper>
